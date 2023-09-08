@@ -1,0 +1,99 @@
+Bảng Role (Bảng phân quyền người dùng)
+	- Id INT PK
+	- Name STRING
+Bảng User (Bảng quản lý người dùng)
+	- Id INT PK
+	- UserName STRING
+	- DisplayName STRING
+	- Password STRING -> MD5
+	- Address STRING
+	- PhoneNumber STRING
+	- Email STRING
+	- Image STRING => Ảnh đại diện cho user
+	- Role_Id INT FK Role(Id)
+	- Created_At DATETIME -> Ngày tạo bảng ghi
+	- Updated_At DATETIME -> Ngày cập nhật bảng ghi
+Bảng Category (Bảng quản lý danh mục sản phẩm)
+	- Id INT PK
+	- Name STRING
+	- Description STRING
+	- Thumbnail STRING => Ảnh đại diện cho category
+	- Cate_Id FK Id Category(Id) => Phân cấp danh mục
+	- Created_At DATETIME -> Ngày tạo bảng ghi
+	- Updated_At DATETIME -> Ngày cập nhật bảng ghi
+Bảng Product (Bảng quản lý sản phẩm)
+	- Id INT PK
+	- Title STRING
+	- Desccription LongText
+	- Thumbnail STRING
+	- Price INT
+	- Discount INT
+	- Category_Id INT FK Category(Id)
+	- Created_By INT FK User(Id) => Admin nào nhập sản phẩm này
+	- Stock_Id INT FK Stock(Id)
+	- Gallery_Id FK Gallery(Id)
+	- Created_At DATETIME -> Ngày tạo bảng ghi
+	- Updated_At DATETIME -> Ngày cập nhật bảng ghi 
+Bảng Order (Bảng quản lý đơn hàng)
+	- Id INT PK
+	- OrderDate STRING
+	- TotalMoney INT -> Tổng tiền của đơn hàng
+	- Note STRING
+	- DeliveryAddress STRING
+	- User_Id INT FK User(Id) => Ghi nhận user mua hàng
+	- Status_Id INT FK Status(Id)
+	- Created_At DATETIME -> Ngày tạo bảng ghi
+	- Updated_At DATETIME -> Ngày cập nhật bảng ghi
+Bảng Order_Detail (Bảng quản lý chi tiết đơn hàng)
+	- Id INT PK
+	- Price INT
+	- Num INT
+	- TotalMoney INT 
+	- Order_Id INT FK Order(Id)
+	- Product_Id INT FK Product(Id)
+	- Created_At DATETIME -> Ngày tạo bảng ghi
+	- Updated_At DATETIME -> Ngày cập nhật bảng ghi
+Bảng Bill (Bảng quản lý hóa đơn)
+	- Id INT PK
+	- Price INT
+	- Num INT -> Số lượng sản phẩm mua
+	- Order_Id INT FK Order(Id)
+	- Created_At DATETIME -> Ngày tạo bảng ghi
+	- Updated_At DATETIME -> Ngày cập nhật bảng ghi
+	- Status_Id INT FK Status(Id)
+Bảng Bill_Detail
+	- Id INT PK
+	- Bill_Id INT FK Bill(Id)
+	- Created_At DATETIME -> Ngày tạo bảng ghi
+	- Updated_At DATETIME -> Ngày cập nhật bảng ghi
+Bảng Feedback (Bảng quản lý phản hồi)
+	- Id INT PK
+	- User_Id INT FK User(Id) => Chỉ đăng ký tài khoản mới cho phản hồi
+	- Title STRING
+	- Note STRING
+	- Created_At DATETIME -> Ngày tạo bảng ghi
+	- Updated_At DATETIME -> Ngày cập nhật bảng ghi
+Bảng Stock (Bảng quản lý kho hàng)
+	- Id INT PK
+	- Address STRING => Vị trí của kho hàng
+	- Inventory INT => Thể hiện tồn kho
+	- Product_Inventory INT => Thể hiện tồn kho của sản phẩm
+	- Created_At DATETIME -> Ngày tạo bảng ghi
+	- Updated_At DATETIME -> Ngày cập nhật bảng ghi
+Bảng Status (Bảng quản lý trạng thái)
+	- Id INT PK
+	- Name STRING
+	- Created_At DATETIME -> Ngày tạo bảng ghi
+	- Updated_At DATETIME -> Ngày cập nhật bảng ghi
+Bảng Gallery (Bảng quản lý hình ảnh)
+	- Id INT PK
+	- GalleryIamge STRING
+	- Product_Id INT FK Product(Id)
+	- Created_At DATETIME -> Ngày tạo bảng ghi
+	- Updated_At DATETIME -> Ngày cập nhật bảng ghi
+
+Bảng thống kế sản phẩm => Dùng View
+Bảng Địa chỉ giao hàng
+Bảng Phương thức vận chuyển
+Bảng tích hợp thanh toán
+Bảng lịch sử đơn hàng => Dùng View

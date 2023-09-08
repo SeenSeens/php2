@@ -6,7 +6,7 @@ class NguyenTo {
 	function isNguyenTo( $x ) {
 		$isSNT = true;
 		for($i = 2; $i < $x; $i++) {
-			if($x % $i == 0) {
+			if($x % $i === 0) {
 				$isSNT = false;
 				break;
 			}
@@ -18,8 +18,10 @@ class NguyenTo {
 	function getList($x1, $x2) {
 		for($i = $x1; $i <= $x2; $i++) {
 			if( $this->isNguyenTo( $i ) ) {
-				echo $i . '<br />';			}
+				echo $i . '<br/>';
+			}
 		}
 	}
 }
 ?>
+
